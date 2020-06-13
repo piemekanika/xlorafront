@@ -43,10 +43,10 @@ export default {
 }
 
 .message__date {
-    margin-top: 2px;
+    margin-top: 3px;
     margin-left: 5px;
 
-    font-size: 12px;
+    font-size: 10px;
     font-weight: normal;
 
     color: gray;
