@@ -1,24 +1,28 @@
 <template>
     <div class="app-chat">
-        <div v-if="!messages.length" style="padding: 20px; color: gray;">
-            No messages yet
-        </div>
+        <div class="app-chat__messages-container" ref="messagesContainer">
+            <div v-if="!messages.length" style="padding: 20px; color: gray;">
+                No messages yet
+            </div>
 
-        <message
-            v-for="message in messages"
-            :key="message.id"
-            :message="message"
-        ></message>
+            <message
+                v-for="message in messages"
+                :key="message.id"
+                :message="message"
+            ></message>
+        </div>
 
         <div class="app-chat__line"></div>
 
-        <new-message></new-message>
+        <new-message
+            @message-sent="handleMessageSent"
+        ></new-message>
     </div>
 </template>
 
 <script>
-import Message from '@/components/chat/Message.vue';
 import NewMessage from '@/components/chat/NewMessage.vue';
+import Message from '@/components/chat/Message.vue';
 import dateFormat from '@/utils/dateConvert';
 export default {
     name: 'AppChat',
@@ -29,23 +33,36 @@ export default {
     data() {
         return {
             messages: [],
+            shouldScrollToBottom: false,
         }
     },
     created() {
         this.$chat.onMessage(message => {
             this.messages.push({
-                ...message,
                 date: dateFormat(message.date),
-                id: this.uniqueId()
+                ...message,
             });
+
+            if (this.shouldScrollToBottom) {
+                this.$nextTick()
+                    .then(() => {
+                        this.scrollToBottom();
+                        this.shouldScrollToBottom = false;
+                    });
+            }
         });
     },
     methods: {
-        uniqueId() {
-            return '_' + Math.random().toString(36).substr(2, 9);
-        }
-    }
-}
+        scrollToBottom() {
+            const { messagesContainer } = this.$refs;
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        },
+        handleMessageSent() {
+            this.shouldScrollToBottom = true;
+        },
+    },
+};
 </script>
 
 <style>
@@ -60,8 +77,15 @@ export default {
     border-radius: 5px;
     box-shadow: 0px 0px 5px 1px #0000001a;
 
+    overflow: hidden;
+
     display: flex;
     flex-direction: column;
+}
+
+.app-chat__messages-container {
+    max-height: calc(100% - 71px);
+    overflow-y: auto;
 }
 
 .app-chat__line {

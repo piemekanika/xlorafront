@@ -9,9 +9,9 @@
         >
 
         <button
-            @click="send"
             class="new-message__button"
             :disabled="!message.length"
+            @click="send"
         >
             Send
         </button>
@@ -35,6 +35,8 @@ export default {
                 });
 
                 this.message = '';
+
+                this.$emit('message-sent');
             }
         },
     },
