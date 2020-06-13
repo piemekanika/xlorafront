@@ -2,8 +2,7 @@ import io from 'socket.io-client';
 
 export default {
     install(Vue) {
-        // const socket = io('https://xlora-back.piemekanika.dev/');
-        const socket = io('ws://localhost:3030');
+        const socket = io(process.env.VUE_APP_CHAT_SOCKET_HOST);
 
         Vue.prototype.$chat = {
             sendMessage(payload) {
