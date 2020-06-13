@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import socket from '@/socket';
 import Message from '@/components/chat/Message.vue';
 import NewMessage from '@/components/chat/NewMessage.vue';
+import dateFormat from '@/utils/dateConvert';
 export default {
     name: 'AppChat',
     components: {
@@ -32,14 +32,13 @@ export default {
         }
     },
     created() {
-        socket.on('msgToClient', message => {
+        this.$chat.onMessage(message => {
             this.messages.push({
                 ...message,
+                date: dateFormat(message.date),
                 id: this.uniqueId()
             });
-
-            console.log(message)
-        })
+        });
     },
     methods: {
         uniqueId() {
@@ -54,7 +53,7 @@ export default {
     background: white;
 
     max-width: 700px;
-    height: calc(100vh - 108px);
+    height: calc(100% - 108px);
 
     margin: 20px auto;
 

@@ -3,7 +3,7 @@
 <!--        <div class="message__sender-avatar"></div>-->
 
         <div class="message__sender-name">
-            {{ props.message.author || 'anon' }}
+            {{ props.message.author.name }}
 
             <div class="message__date">
                 {{ props.message.date }}

@@ -19,24 +19,26 @@
 </template>
 
 <script>
-import socket from '@/socket';
 export default {
     name: 'NewMessage',
     data() {
         return {
             message: '',
-        }
+        };
     },
     methods: {
         send() {
             if (this.message.length) {
-                socket.emit('msgToServer', this.message);
+                this.$chat.sendMessage({
+                    text: this.message,
+                    author: 'test',
+                });
 
                 this.message = '';
             }
         },
-    }
-}
+    },
+};
 </script>
 
 <style>
@@ -46,6 +48,8 @@ export default {
     display: grid;
     grid-template-columns: 1fr 60px;
     grid-column-gap: 10px;
+
+    background: #fafbfc;
 }
 
 .new-message__input {
@@ -55,5 +59,21 @@ export default {
     border: 1px solid lightgray;
 
     outline: none;
+
+    box-shadow: none;
+    outline: none;
+}
+
+.new-message__button {
+    box-shadow: none;
+    outline: none;
+
+    border: 1px solid lightgray;
+
+    background: #ffe6ea;
+
+    border-radius: 5px;
+
+    cursor: pointer;
 }
 </style>
