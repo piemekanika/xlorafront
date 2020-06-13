@@ -1,7 +1,7 @@
 <template functional>
     <div class="app-header">
         <div class="app-header__name">
-            xLora Realtime Chat
+            xLora Realtime Chat test
         </div>
     </div>
 </template>
