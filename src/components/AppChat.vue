@@ -38,10 +38,9 @@ export default {
     },
     created() {
         this.$chat.onMessage(message => {
-            this.messages.push({
-                date: dateFormat(message.date),
-                ...message,
-            });
+            message.date = dateFormat(message.date);
+
+            this.messages.push(message);
 
             if (this.shouldScrollToBottom) {
                 this.$nextTick()
