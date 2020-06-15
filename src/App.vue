@@ -1,18 +1,19 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <app-chat></app-chat>
+<!--    <app-chat></app-chat>-->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import AppHeader from '@/components/AppHeader.vue';
-import AppChat from '@/components/AppChat.vue';
+// import AppChat from '@/components/AppChat.vue';
 export default {
   name: 'App',
   components: {
     AppHeader,
-    AppChat,
+    // AppChat,
   }
 }
 </script>
