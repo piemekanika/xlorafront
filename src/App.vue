@@ -1,17 +1,18 @@
 <template>
-  <div id="app">
-    <app-header></app-header>
-
+  <component :is="$route.meta.layout || 'default'">
     <router-view></router-view>
-  </div>
+  </component>
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader.vue';
+import Rectangle from '@/layout/rectangle.vue';
+import Default from '@/layout/default.vue';
+
 export default {
   name: 'App',
   components: {
-    AppHeader,
+    Rectangle,
+    Default,
   },
 };
 </script>

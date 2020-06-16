@@ -27,6 +27,74 @@ body {
     box-sizing: inherit;
 }
 
-#app {
+#app, .app {
     height: 100%;
 }
+
+.text-header {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+input {
+    padding: 6px 10px;
+
+    border-radius: 5px;
+    border: 1px solid lightgray;
+
+    outline: none;
+
+    box-shadow: none;
+    outline: none;
+}
+
+/*HEX
+
+#FFD2FA
+
+RGB
+
+255, 210, 250
+
+CMYK
+
+0, 18, 2, 0
+
+HEX
+
+#FFEDD2
+
+RGB
+
+255, 237, 210
+
+CMYK
+
+0, 7, 18, 0
+
+HEX
+
+#D2FFD6
+
+RGB
+
+210, 255, 214
+
+CMYK
+
+18, 0, 16, 0
+
+HEX
+
+#D2E3FF
+
+RGB
+
+210, 227, 255
+
+CMYK
+
+18, 11, 0, 0
+
+*/

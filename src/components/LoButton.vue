@@ -1,5 +1,9 @@
 <template functional>
-    <button class="lo-button">
+    <button
+        class="lo-button"
+        v-bind="data.attrs"
+        v-on="listeners"
+    >
         <slot></slot>
     </button>
 </template>

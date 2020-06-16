@@ -8,13 +8,13 @@
             placeholder="Enter your message..."
         >
 
-        <button
+        <lo-button
             class="new-message__button"
             :disabled="!message.length"
             @click="send"
         >
             Send
-        </button>
+        </lo-button>
     </div>
 </template>
 
@@ -29,10 +29,7 @@ export default {
     methods: {
         send() {
             if (this.message.length) {
-                this.$chat.sendMessage({
-                    text: this.message,
-                    author: 'test',
-                });
+                this.$chat.sendMessage({ text: this.message });
 
                 this.message = '';
 
@@ -52,18 +49,6 @@ export default {
     grid-column-gap: 10px;
 
     background: #fafbfc;
-}
-
-.new-message__input {
-    padding: 5px 10px;
-
-    border-radius: 3px;
-    border: 1px solid lightgray;
-
-    outline: none;
-
-    box-shadow: none;
-    outline: none;
 }
 
 .new-message__button {

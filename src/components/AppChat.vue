@@ -6,9 +6,10 @@
             </div>
 
             <message
-                v-for="message in messages"
+                v-for="(message, index) in messages"
                 :key="message.id"
                 :message="message"
+                :hide-sender="index > 0 && message.author.name === messages[index - 1].author.name"
             ></message>
         </div>
 

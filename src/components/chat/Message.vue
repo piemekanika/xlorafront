@@ -1,8 +1,8 @@
 <template functional>
-    <div class="message">
+    <div class="message" :class="{'message--author-hidden': props.hideSender}">
 <!--        <div class="message__sender-avatar"></div>-->
 
-        <div class="message__sender-name">
+        <div v-if="!props.hideSender" class="message__sender-name">
             {{ props.message.author.name }}
 
             <div class="message__date">
@@ -24,6 +24,9 @@ export default {
             type: Object,
             required: true,
         },
+        hideSender: {
+            type: Boolean,
+        },
     },
 };
 </script>
@@ -31,6 +34,10 @@ export default {
 <style>
 .message {
     padding: 10px 20px;
+}
+
+.message--author-hidden {
+    padding-top: 0px;
 }
 
 .message__sender-name {
@@ -51,5 +58,4 @@ export default {
 
     color: gray;
 }
-
 </style>

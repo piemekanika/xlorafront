@@ -7,6 +7,12 @@ const router = new VueRouter({
             path: '/',
             component: () => import('@/views/chat.vue'),
         },
+        {
+            path: '/login',
+            meta: { layout: 'rectangle' },
+            component: () => import('@/views/login.vue'),
+        },
+        { path: '*', redirect: '/' },
     ],
 });
 
